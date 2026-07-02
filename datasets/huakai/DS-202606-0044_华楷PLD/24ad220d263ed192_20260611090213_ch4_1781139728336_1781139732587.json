@@ -1,0 +1,20 @@
+{
+  "datasetCode": "DS-202606-0044",
+  "datasetName": "验证集",
+  "version": "V1.0",
+  "workstationId": "d06c9a3756544dd582cc76cf02779c52",
+  "workstationName": "华楷PLD",
+  "workstationCode": "HKPLD",
+  "detectStationId": "0e8164420b3f438b95ab51718e7a5667",
+  "detectStationName": "HKPLD-GZ-0007-右",
+  "detectStationNumber": "02",
+  "fileID": "e92a81f230c144f98a767cf7360a52eb",
+  "originalWav": "24ad220d263ed192_20260611090213_ch4_1781139728336_1781139732587.wav",
+  "dateDir": "2026-06-11",
+  "channelID": "c06c4f97593b4b2ca44db1ff80297f5c",
+  "productUniqueCode": "2JER2026060200425",
+  "detectPointName": "通道2",
+  "channel": "4",
+  "stage": "2",
+  "channelCount": 1
+}

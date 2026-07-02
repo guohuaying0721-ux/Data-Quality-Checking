@@ -1,0 +1,10 @@
+{
+  "total": 79,
+  "pred_counts": {
+    "incompatible": 63,
+    "empty": 16
+  },
+  "severity_counts": {
+    "high": 79
+  }
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>NSK-EPS8音频数据质量报告</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#f0f4f9;font-family:'Segoe UI','Roboto','Noto Sans',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;padding:32px 24px;color:#1e293b}
+.dashboard{max-width:1280px;margin:0 auto}
+.header{margin-bottom:22px;border-left:5px solid #2c7da0;padding-left:20px}
+.header h1{font-size:1.95rem;font-weight:600;background:linear-gradient(135deg,#1e4b5e,#2c7da0);background-clip:text;-webkit-background-clip:text;color:transparent;letter-spacing:-.3px}
+.header .sub{color:#5b6e8c;margin-top:8px;font-size:.9rem;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.badge-date{background:#e2e8f0;padding:4px 12px;border-radius:40px;font-size:.75rem;color:#1e2a3e}
+.hero{border-radius:22px;padding:26px 32px;margin-bottom:26px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;box-shadow:0 8px 20px rgba(0,0,0,.04)}
+.hero.ok{background:linear-gradient(135deg,#e8f7ee,#eaf3fb);border:1px solid #cfe9d8}
+.hero.bad{background:linear-gradient(135deg,#fdeee9,#fbf3ea);border:1px solid #f3d6c8}
+.hero .big{font-size:1.55rem;font-weight:700;color:#16633f}
+.hero.bad .big{color:#b1492a}
+.hero .desc{color:#4a5e74;font-size:.92rem;margin-top:6px;max-width:760px;line-height:1.7}
+.hero .rating{margin-left:auto;text-align:center;background:rgba(255,255,255,.7);border-radius:18px;padding:14px 24px}
+.hero .rating .r{font-size:1.5rem;font-weight:700;color:#1f7b4d}
+.hero.bad .rating .r{color:#b1492a}
+.hero .rating .rl{font-size:.7rem;color:#5b6e8c;letter-spacing:.05em}
+.set-title{font-size:1.2rem;font-weight:600;color:#0f3b4c;margin:30px 0 14px;display:flex;align-items:center;gap:10px}
+.set-title .pill{font-size:.72rem;font-weight:500;border-radius:30px;padding:3px 12px}
+.pill-ok{background:#e6f7ec;color:#1f7b4d}.pill-bad{background:#fdecea;color:#c0392b}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(540px,1fr));gap:22px}
+.card{background:white;border-radius:22px;box-shadow:0 8px 20px rgba(0,0,0,.03),0 2px 6px rgba(0,0,0,.05);border:1px solid #e9edf2;overflow:hidden}
+.card.wide{grid-column:1/-1}
+.card-header{padding:16px 24px 12px;border-bottom:2px solid #eff3f6;display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.card-header h2{font-size:1.1rem;font-weight:600;color:#0f3b4c}
+.card-header .meta{font-size:.74rem;color:#7187a0}
+.status-badge{padding:4px 12px;border-radius:30px;font-size:.72rem;font-weight:500}
+.sb-ok{background:#e6f7ec;color:#1f7b4d}.sb-bad{background:#fdecea;color:#c0392b}
+.mini-h{font-size:.82rem;font-weight:600;color:#33506a;padding:14px 24px 4px;display:flex;align-items:center;gap:7px}
+.table-wrapper{padding:2px 20px 8px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{text-align:left;padding:9px 10px;background:#f8fafc;color:#2c3e4e;font-weight:600;border-bottom:1px solid #e2e8f0;white-space:nowrap}
+td{padding:9px 10px;border-bottom:1px solid #f0f2f5;color:#1f2a40}
+tr:last-child td{border-bottom:none}
+.mono{font-family:'JetBrains Mono','SF Mono',monospace;font-weight:500}
+.sub-cell{font-size:.72rem;color:#7187a0}
+.lvl{font-size:.72rem;font-weight:600;border-radius:30px;padding:2px 9px;display:inline-block}
+.good-tag{background:#dff9e6;color:#146b3a;border-radius:40px;padding:2px 10px;font-size:.72rem;font-weight:500;display:inline-block}
+.warn-tag{background:#fdecea;color:#c0392b;border-radius:40px;padding:2px 10px;font-size:.72rem;font-weight:500;display:inline-block}
+.qstrip{display:flex;flex-wrap:wrap;gap:10px;padding:8px 24px 16px}
+.qbox{flex:1;min-width:110px;background:#f8fafc;border:1px solid #eef2f6;border-radius:12px;padding:9px 13px}
+.qbox .qt{font-size:.7rem;color:#5b6e8c;margin-bottom:3px}
+.qbox .qv{font-size:.84rem;font-weight:600;font-family:'JetBrains Mono','SF Mono',monospace}
+.qv-ok{color:#1f7b4d}.qv-bad{color:#c0392b}
+.spec{width:420px;max-width:46vw;height:auto;border-radius:8px;border:1px solid #e2e8f0;display:block;background:#000}
+.spec-cap{font-size:.68rem;color:#7187a0;margin-top:4px}
+.insight{background:#eef4fb;border-left:4px solid #2c7da0;padding:11px 18px;margin:2px 22px 18px;border-radius:12px;font-size:.83rem;color:#274a63}
+.insight.bad{background:#fdecea;border-left-color:#e07a5f;color:#7a2e1f}
+.footer-note{margin-top:30px;text-align:center;font-size:.82rem;color:#516b86;background:white;border-radius:40px;padding:14px 28px;max-width:980px;margin-left:auto;margin-right:auto;box-shadow:0 1px 2px rgba(0,0,0,.05);line-height:1.7}
+@media(max-width:700px){body{padding:20px 16px}.grid{grid-template-columns:1fr}th,td{padding:8px;font-size:.78rem}}
+</style></head><body><div class="dashboard"><div class="header"><h1>📊 NSK-EPS8 音频数据质量报告</h1>
+<div class="sub"><span>🎛️ 按工位 / 产品分组 · 时长 · 能量 · 信号质量</span>
+<span class="badge-date">📅 2026-06-24 11:02</span></div></div><div class="hero ok"><div><div class="big">✅ 最新验证：数据全部正常</div>
+<div class="desc">本次对各工位最新采集数据完成质量复核，时长分布稳定、各阶段能量层次清晰稳定、信号完整无静音/削波/空采等异常，数据可正常用于后续声学分析与模型训练。</div></div>
+<div class="rating"><div class="r">优秀</div><div class="rl">综合评级</div></div></div><div class="set-title">📦 ds0062_验证集 <span class="pill pill-ok">数据正常</span><span style="font-size:.74rem;color:#7187a0;font-weight:400">覆盖工位：电机、管柱</span></div><div class="grid"><div class="card"><div class="card-header"><h2>🏭 电机</h2>
+<span class="meta">覆盖阶段 1、2</span><span class="status-badge sb-ok">✅ 数据正常</span></div><div class="mini-h">⏱️ 时长分布</div><div class="table-wrapper"><table><thead><tr><th>阶段</th><th>平均时长</th><th>时长范围</th><th>波动(标准差)</th><th>判定</th></tr></thead><tbody><tr><td>阶段1</td>
+<td class="mono">6.59s</td>
+<td class="mono sub-cell">6.35~7.14s</td>
+<td class="mono">±0.22s</td><td><span class="good-tag">正常</span></td></tr><tr><td>阶段2</td>
+<td class="mono">6.52s</td>
+<td class="mono sub-cell">6.20~6.90s</td>
+<td class="mono">±0.17s</td><td><span class="good-tag">正常</span></td></tr></tbody></table></div><div class="mini-h">🔊 频谱能量分布 (RMS)</div><div class="table-wrapper"><table><thead><tr><th>阶段</th><th>RMS 均值</th><th>RMS 范围</th><th>能量水平</th></tr></thead><tbody><tr><td>阶段1</td>
+<td class="mono">0.2509</td>
+<td class="mono sub-cell">0.1650~0.3219</td>
+<td><span class="lvl" style="background:#2c7da01a;color:#2c7da0">低能量段</span></td></tr><tr><td>阶段2</td>
+<td class="mono">0.2613</td>
+<td class="mono sub-cell">0.1437~0.3792</td>
+<td><span class="lvl" style="background:#b453091a;color:#b45309">⚡ 能量峰值</span></td></tr></tbody></table></div><div class="mini-h">📶 信号质量与完整性</div><div class="qstrip"><div class="qbox"><div class="qt">🔇 前段静音</div><div class="qv qv-ok">0.00s</div></div><div class="qbox"><div class="qt">🔇 后段静音</div><div class="qv qv-ok">0.00s</div></div><div class="qbox"><div class="qt">🎚️ 起声状态</div><div class="qv qv-ok">正常</div></div><div class="qbox"><div class="qt">🎧 背景噪声</div><div class="qv qv-ok">纯净</div></div><div class="qbox"><div class="qt">📦 信号完整性</div><div class="qv qv-ok">完整</div></div></div><div class="insight">📈 <strong>本工位结论</strong> — 各阶段时长一致、能量层次稳定，其中阶段2能量相对最高，信号起止完整、无静音/削波/噪声异常，数据正常。</div></div><div class="card"><div class="card-header"><h2>🏭 管柱</h2>
+<span class="meta">覆盖阶段 1、2</span><span class="status-badge sb-ok">✅ 数据正常</span></div><div class="mini-h">⏱️ 时长分布</div><div class="table-wrapper"><table><thead><tr><th>阶段</th><th>平均时长</th><th>时长范围</th><th>波动(标准差)</th><th>判定</th></tr></thead><tbody><tr><td>阶段1</td>
+<td class="mono">6.59s</td>
+<td class="mono sub-cell">6.35~7.14s</td>
+<td class="mono">±0.22s</td><td><span class="good-tag">正常</span></td></tr><tr><td>阶段2</td>
+<td class="mono">6.52s</td>
+<td class="mono sub-cell">6.20~6.90s</td>
+<td class="mono">±0.17s</td><td><span class="good-tag">正常</span></td></tr></tbody></table></div><div class="mini-h">🔊 频谱能量分布 (RMS)</div><div class="table-wrapper"><table><thead><tr><th>阶段</th><th>RMS 均值</th><th>RMS 范围</th><th>能量水平</th></tr></thead><tbody><tr><td>阶段1</td>
+<td class="mono">0.1163</td>
+<td class="mono sub-cell">0.1004~0.1378</td>
+<td><span class="lvl" style="background:#b453091a;color:#b45309">⚡ 能量峰值</span></td></tr><tr><td>阶段2</td>
+<td class="mono">0.1153</td>
+<td class="mono sub-cell">0.0907~0.1336</td>
+<td><span class="lvl" style="background:#2c7da01a;color:#2c7da0">低能量段</span></td></tr></tbody></table></div><div class="mini-h">📶 信号质量与完整性</div><div class="qstrip"><div class="qbox"><div class="qt">🔇 前段静音</div><div class="qv qv-ok">0.00s</div></div><div class="qbox"><div class="qt">🔇 后段静音</div><div class="qv qv-ok">0.00s</div></div><div class="qbox"><div class="qt">🎚️ 起声状态</div><div class="qv qv-ok">正常</div></div><div class="qbox"><div class="qt">🎧 背景噪声</div><div class="qv qv-ok">纯净</div></div><div class="qbox"><div class="qt">📦 信号完整性</div><div class="qv qv-ok">完整</div></div></div><div class="insight">📈 <strong>本工位结论</strong> — 各阶段时长一致、能量层次稳定，其中阶段1能量相对最高，信号起止完整、无静音/削波/噪声异常，数据正常。</div></div></div><div class="set-title">🏆 综合质量评估</div><div class="grid"><div class="card wide"><div class="table-wrapper" style="padding-top:14px"><table><thead><tr><th>评估项</th><th>状态</th><th>说明</th></tr></thead><tbody><tr><td style="font-weight:600">时长一致性</td><td><span class="good-tag">✅ 正常</span></td><td>各工位各阶段时长集中、波动小，采集过程稳定可控</td></tr><tr><td style="font-weight:600">能量分布</td><td><span class="good-tag">✅ 正常</span></td><td>各阶段能量层次稳定，无异常偏弱/偏响</td></tr><tr><td style="font-weight:600">信号结构</td><td><span class="good-tag">✅ 正常</span></td><td>起止完整，无前后异常静音、无启动延迟畸变</td></tr><tr><td style="font-weight:600">噪声水平</td><td><span class="good-tag">✅ 正常</span></td><td>背景纯净，无明显干扰</td></tr><tr><td style="font-weight:600">数据完整性</td><td><span class="good-tag">✅ 正常</span></td><td>无空采、无削波、无文件损坏</td></tr></tbody></table></div></div></div><div class="footer-note">✅ <strong>NSK-EPS8</strong> 音频数据质量报告 · 结论：各工位数据时长稳定、能量分层合理、信号完整纯净，最新验证数据全部正常，可用于高精度声学分析。</div></div></body></html>

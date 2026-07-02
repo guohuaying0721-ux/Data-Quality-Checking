@@ -1,0 +1,10 @@
+{
+  "total": 4089,
+  "pred_counts": {
+    "incompatible": 4052,
+    "clipped": 37
+  },
+  "severity_counts": {
+    "high": 4089
+  }
+}

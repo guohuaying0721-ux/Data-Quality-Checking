@@ -1,0 +1,14 @@
+{
+  "datasetCode": "DS-202606-0022",
+  "datasetName": "继峰验证集2",
+  "version": "V1.0",
+  "fileID": "e9880127b8c24803b64caf123610ad46",
+  "originalWav": "9f7c4ba7f5e82569_20260610161316_ch2_1781079179120_1781079195597.wav",
+  "dateDir": "2026-06-10",
+  "channelID": "d8322b6e898743f9971bb352694a9313",
+  "productUniqueCode": "GZ0000071-039021504R-67403B300250,HM/TJX2-7-L/260526/1606/3559X04/40",
+  "detectPointName": "EOL-40%-2号机-左",
+  "channel": "2",
+  "stage": "1",
+  "channelCount": 1
+}

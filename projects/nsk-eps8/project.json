@@ -1,0 +1,13 @@
+{
+  "name": "nsk-eps8",
+  "display_name": "NSK-EPS8",
+  "note": "NSK-EPS8",
+  "baseline_sets": [
+    "datasets/nsk-eps8/DS-202606-0062_基准"
+  ],
+  "valid_sets": {
+   
+    "ds0062_验证集":"datasets/nsk-eps8/DS-202606-0063_验证"
+  },
+  "calib_override": {"interference": 0.9, "clipped_ratio": 0.08}
+}

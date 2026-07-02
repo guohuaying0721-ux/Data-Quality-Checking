@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "version": "2.0",
+    "note": "存原始统计量；生效阈值 = 统计量 × common.CALIB 系数，检测时计算",
+    "n_baselines": 4,
+    "n_total_samples": 40,
+    "min_baseline_samples": 5,
+    "warnings": []
+  },
+  "hard_rules": {
+    "empty": {
+      "frame_mean": 0.01,
+      "frame_cv": 0.6,
+      "frame_max": 0.05,
+      "rms": 0.01
+    },
+    "clipped": {
+      "peak": 0.99,
+      "clipping_ratio": 0.001,
+      "rms": 0.15,
+      "frame_mean": 0.15
+    }
+  },
+  "calib": {
+    "too_weak": 0.5,
+    "too_loud": 1.5,
+    "late_start": 0.35,
+    "pre_silence": 2.0,
+    "post_silence": 2.0,
+    "silence_floor_sec": 0.5,
+    "too_short": 0.5,
+    "too_long": 1.5,
+    "interference": 0.375
+  },
+  "baselines": {
+    "通道2_stage1_ch4": {
+      "n_samples": 10,
+      "duration_min": 4.32,
+      "duration_max": 4.88,
+      "rms_p_low": 0.033890828273731494,
+      "rms_p_high": 0.06431243082058759,
+      "rms_mean": 0.0497510389712437,
+      "rms_std": 0.01200567726894063,
+      "pre_silence_p95": 4.5351473922902495e-05,
+      "post_silence_p95": 7.25623582766439e-05,
+      "late_start_median": 1.8243923364018775,
+      "interference_p95": 0.2986685830747097
+    },
+    "通道2_stage2_ch4": {
+      "n_samples": 10,
+      "duration_min": 4.2,
+      "duration_max": 4.52,
+      "rms_p_low": 0.03429881728663042,
+      "rms_p_high": 0.05274180953059639,
+      "rms_mean": 0.04442344419919665,
+      "rms_std": 0.006516443232161115,
+      "pre_silence_p95": 4.5351473922902495e-05,
+      "post_silence_p95": 5.7823129251700656e-05,
+      "late_start_median": 0.9031602718940419,
+      "interference_p95": 0.2651476059975232
+    },
+    "通道1_stage1_ch3": {
+      "n_samples": 10,
+      "duration_min": 4.4,
+      "duration_max": 4.92,
+      "rms_p_low": 0.027461368653374153,
+      "rms_p_high": 0.03926020370441852,
+      "rms_mean": 0.032560004195179744,
+      "rms_std": 0.004288519496397949,
+      "pre_silence_p95": 2.4943310657596325e-05,
+      "post_silence_p95": 3.514739229024941e-05,
+      "late_start_median": 1.4734639020667186,
+      "interference_p95": 0.20577064930444197
+    },
+    "通道1_stage2_ch3": {
+      "n_samples": 10,
+      "duration_min": 4.44,
+      "duration_max": 4.88,
+      "rms_p_low": 0.028259235312678644,
+      "rms_p_high": 0.04446011176287969,
+      "rms_mean": 0.03382290873935687,
+      "rms_std": 0.005993837821531491,
+      "pre_silence_p95": 0.0,
+      "post_silence_p95": 2.4943310657596325e-05,
+      "late_start_median": 0.6813195080811194,
+      "interference_p95": 0.2146834995820644
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "datasetCode": "DS-202606-0009",
+  "datasetName": "单人椅",
+  "version": "V1.0",
+  "fileID": "604e25aab6964001b7404494569315b8",
+  "originalWav": "9f7c4ba7f5e82569_20260602165512_ch2_1780390505463_1780390511930.wav",
+  "dateDir": "2026-06-02",
+  "channelID": "45e60bf6d3a646bf9b87951dac357da4",
+  "productUniqueCode": "GZ0000071-039021504R-67306A300748,HM/TJX2-7-L/260409/0425/4041X04/40",
+  "detectPointName": "EOL-40%-2号机-左",
+  "channel": "2",
+  "stage": "4",
+  "channelCount": 1
+}

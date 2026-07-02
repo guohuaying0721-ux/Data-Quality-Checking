@@ -1,0 +1,9 @@
+{
+  "total": 40,
+  "pred_counts": {
+    "keep": 40
+  },
+  "severity_counts": {
+    "ok": 40
+  }
+}

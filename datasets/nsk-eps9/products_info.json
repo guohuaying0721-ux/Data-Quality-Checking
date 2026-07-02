@@ -1,0 +1,18 @@
+{
+  "workstation": "NSK-EPS9",
+  "workstationId": "6aa6c7cef9ca4eafbd4e1b37142aea57",
+  "products": [
+    {
+      "id": "768b784b6c5e4fe0ae9c00c455d0151f",
+      "productNumber": "GEN3",
+      "productName": "GEN3",
+      "createTime": "2026-05-27T20:06:12"
+    },
+    {
+      "id": "8c20f89b8a7e401cb1141d6d26e29a8f",
+      "productNumber": "MQB",
+      "productName": "MQB",
+      "createTime": "2026-05-27T20:06:12"
+    }
+  ]
+}

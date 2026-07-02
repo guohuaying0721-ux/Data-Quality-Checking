@@ -1,0 +1,12 @@
+{
+  "fileID": "74cfe828723a47e5a789224238ad4992",
+  "originalWav": "edff662cf285e170_20260602154044_ch3_1780386028262_1780386044144.wav",
+  "sourceWavUrl": "http://192.168.2.176:29000/smart-quality-jf-01/uploadFile/00000000000000000000000000000011/2026-06-02/673868402beb7db3218c794bf0c20e07.wav?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=topsequence%2F20260603%2Fap-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T074908Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=fec5f2650ad4941e166b23c7a7188091072be5a18ee30df0854fc1b10f33c259",
+  "dateDir": "2026-06-02",
+  "channelID": "408599760cfc4f8f9937a0f5feeef9b9",
+  "productUniqueCode": "GZ0000071-039021504R-67306A300534,HM/TJX7-3-L/260521/0249/3069X04/60",
+  "detectPointName": "EOL-60%-1号机-右",
+  "channel": "3",
+  "stage": "1",
+  "channelCount": 1
+}

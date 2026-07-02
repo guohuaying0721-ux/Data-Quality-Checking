@@ -1,0 +1,12 @@
+{
+  "name": "huakai",
+  "display_name": "华楷PLD",
+  "note": "华楷PLD 工位（HKPLD-GZ-0007 中/右）。通道1=中(ch3)，通道2=右(ch4)，每件两段(stage1/2)。CALIB 暂用全局默认，待据华楷验证集复核后填 calib_override。",
+  "baseline_sets": [
+    "datasets/huakai/DS-202606-0043_华楷PLD"
+  ],
+  "valid_sets": {
+    "ds0044_验证集": "datasets/huakai/DS-202606-0044_华楷PLD"
+  },
+  "calib_override": {}
+}

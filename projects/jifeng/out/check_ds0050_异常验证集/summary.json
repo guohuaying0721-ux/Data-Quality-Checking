@@ -1,0 +1,13 @@
+{
+  "total": 82,
+  "pred_counts": {
+    "too_loud": 2,
+    "keep": 78,
+    "late_start": 2
+  },
+  "severity_counts": {
+    "high": 2,
+    "ok": 78,
+    "medium": 2
+  }
+}

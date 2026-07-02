@@ -1,0 +1,44 @@
+================================================================================
+音频质量检测 - 项目全局标准报告
+================================================================================
+
+总文件数: 82
+异常文件数: 4
+
+【检测标准】（生效阈值 = 基准统计量 × 系数）
+硬规则（全量）: empty（信号结构特征） / clipped（峰值贴顶+削波率+能量）
+跨产品: 无匹配基准组 → incompatible
+基准阈值（per-group）:
+  too_weak:     rms < rms_P5 × 0.5
+  too_loud:     rms > rms_P95 × 1.5
+  late_start:   front/back < late_median × 0.35
+  pre_silence:  > max(pre_P95 × 2.0, 0.5s)
+  post_silence: > max(post_P95 × 2.0, 0.5s)
+  too_short:    dur < min × 0.5    too_long: dur > max × 1.5
+  interference: zcr > 0.375（经验值）
+
+【异常汇总】
+  late_start: 2
+  too_loud: 2
+
+【详细结果】
+
+[too_loud] edff662cf285e170_20260609145815_ch3_1780988277362_1780988295585.wav
+  严重度: high
+  原因: too_loud: rms=0.06239 > 0.02601
+  时长: 18.24s, RMS: 0.06239, Peak: 1.0
+
+[too_loud] edff662cf285e170_20260609145815_ch4_1780988277362_1780988295585.wav
+  严重度: high
+  原因: too_loud: rms=0.07303 > 0.03576
+  时长: 18.24s, RMS: 0.07303, Peak: 1.0
+
+[late_start] edff662cf285e170_20260614151148_ch3_1781421071793_1781421108073.wav
+  严重度: medium
+  原因: late_start: front/back=0.1396 < 0.4666
+  时长: 29.68s, RMS: 0.01242, Peak: 0.91708
+
+[late_start] edff662cf285e170_20260614151148_ch4_1781421071793_1781421108073.wav
+  严重度: medium
+  原因: late_start: front/back=0.1061 < 0.3201
+  时长: 29.68s, RMS: 0.017, Peak: 1.0

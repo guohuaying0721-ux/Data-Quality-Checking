@@ -1,0 +1,419 @@
+================================================================================
+音频质量检测 - 项目全局标准报告
+================================================================================
+
+总文件数: 79
+异常文件数: 79
+
+【检测标准】（生效阈值 = 基准统计量 × 系数）
+硬规则（全量）: empty（信号结构特征） / clipped（峰值贴顶+削波率+能量）
+跨产品: 无匹配基准组 → incompatible
+基准阈值（per-group）:
+  too_weak:     rms < rms_P5 × 0.5
+  too_loud:     rms > rms_P95 × 1.5
+  late_start:   front/back < late_median × 0.35
+  pre_silence:  > max(pre_P95 × 2.0, 0.5s)
+  post_silence: > max(post_P95 × 2.0, 0.5s)
+  too_short:    dur < min × 0.5    too_long: dur > max × 1.5
+  interference: zcr > 0.375（经验值）
+
+【异常汇总】
+  empty: 16
+  incompatible: 63
+
+【详细结果】
+
+[incompatible] train_input/1206776.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 8.0s, RMS: 0.00902, Peak: 0.36948
+
+[incompatible] train_input/1206779.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.92s, RMS: 0.01116, Peak: 0.56046
+
+[incompatible] train_input/1206781.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 8.48s, RMS: 0.00919, Peak: 0.46536
+
+[incompatible] train_input/1206787.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 7.84s, RMS: 0.009, Peak: 0.40936
+
+[incompatible] train_input/1206794.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.12s, RMS: 0.01886, Peak: 1.0
+
+[incompatible] train_input/1206795.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.16s, RMS: 0.01514, Peak: 0.77936
+
+[incompatible] train_input/1206894.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.92s, RMS: 0.00869, Peak: 0.15851
+
+[incompatible] train_input/HD-TH-1015-NG1-004-T2_S1_2025-10-15_113908_a51d475ec8044e03b4fdd3247613370b_1242036.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 6.56s, RMS: 0.01474, Peak: 0.36945
+
+[incompatible] train_input/HD-TH-1015-NG10-038-T2_S1_2025-10-15_131001_5d89968dd5d34d0bad9982c77711efb8_1242031-interference.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 4.8s, RMS: 0.02124, Peak: 0.25766
+
+[incompatible] train_input/HD-TH-1015-NG10-039-T2_S1_2025-10-15_131013_f1e0d33169cc4932b6517530096f52a4_224_1242032.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.28s, RMS: 0.02233, Peak: 0.32581
+
+[incompatible] train_input/HD-TH-1015-NG10-040-T2_S1_2025-10-15_131026_46ba93af1283482987cad5cd6fb21f94_224_1242033.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 4.64s, RMS: 0.01979, Peak: 0.36081
+
+[incompatible] train_input/HD-TH-1015-NG2-005-T2_S1_2025-10-15_114858_15e453e43d35429ebd9e34fdbcb08bfd_1242037.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 6.72s, RMS: 0.03047, Peak: 1.0
+
+[incompatible] train_input/HD-TH-1015-NG3-009-T1_S1_2025-10-15_124911_3bf759884bbe4d01875ac978db419bda_1242001.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 6.72s, RMS: 0.02047, Peak: 0.77249
+
+[incompatible] train_input/HD-TH-1015-NG3-009-T2_S1_2025-10-15_124911_58aeb8c4c54440a5aac15c175d9428c8_224_1242041.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 6.72s, RMS: 0.02741, Peak: 0.56619
+
+[incompatible] train_input/HD-TH-1015-NG3-010-T2_S1_2025-10-15_124938_98cf5b627dff43e393da6edd49dce46c_1242042-interference.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 6.24s, RMS: 0.0232, Peak: 0.44763
+
+[incompatible] train_input/HD-TH-1015-NG3-011-T2_S1_2025-10-15_124952_31e92f3070da4519a094de31acce325c_1242043-interference.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.92s, RMS: 0.02607, Peak: 0.34155
+
+[incompatible] train_input/HD-TH-1015-NG3-012-T2_S1_2025-10-15_125008_7b668a8cfe0440f4b43b33da51d9a048_1242044-interference.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 6.72s, RMS: 0.0246, Peak: 0.21786
+
+[incompatible] train_input/HD-TH-1015-NG4-013-T2_S1_2025-10-15_125220_de663c038e9e407e87e503bd332538ce_1242045-interference.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.92s, RMS: 0.01555, Peak: 0.68042
+
+[incompatible] train_input/HD-TH-1015-NG4-016-T2_S1_2025-10-15_125308_b4eb40e2f5cf44589df296928a6ac080_1242009-interference.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 6.24s, RMS: 0.01559, Peak: 0.31665
+
+[incompatible] train_input/HD-TH-1015-NG5-020-T2_S1_2025-10-15_125717_99c6f01c8ecd48e98fef542cc95bf80c_1242013-interference.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.0s, RMS: 0.0206, Peak: 0.26447
+
+[incompatible] train_input/HD-TH-1015-NG7-026-T2_S1_2025-10-15_130208_fde3002fc8f64b9387a04d068491e755_1242019-interference.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 4.96s, RMS: 0.01545, Peak: 0.19241
+
+[incompatible] train_input/HD-TH-1015-NG7-027-T2_S1_2025-10-15_130218_20e6fb2944ca49a78ca75ecef1982eb6_1242020-interference.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 4.64s, RMS: 0.01268, Peak: 0.24118
+
+[incompatible] train_input/HD-TH-1015-NG9-036-T2_S1_2025-10-15_130716_5d428a6876af4dab903a9097f098d6d4_1242029.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.08s, RMS: 0.01086, Peak: 0.21985
+
+[incompatible] train_input/HD-TH-1023-NG1-004_T1_S1_2025-10-23_130314_d7f2425019044773bb12f0530a583659_224_1523860.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 7.26s, RMS: 0.00261, Peak: 0.10953
+
+[empty] train_input/HD-TH-1023-NG1-005_T1_S1_2025-10-23_130417_fa1c0284abc2456993e22ee0c4970c31_224_1523858.wav
+  严重度: high
+  原因: empty: cond_b=False, cond_c=True, cond_d=False
+  时长: 8.17s, RMS: 0.00162, Peak: 0.06366
+
+[incompatible] train_input/HD-TH-1023-NG1-006_T1_S1_2025-10-23_130507_b3087968e8aa49c09944332e81ade7db_224_1523857.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 7.81s, RMS: 0.0036, Peak: 0.13916
+
+[incompatible] train_input/HD-TH-1023-NG1-007_T1_S1_2025-10-23_130551_17a20ab431b94b3792485470a5a523d2_224_1523855.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 8.43s, RMS: 0.00219, Peak: 0.19928
+
+[empty] train_input/HD-TH-1023-NG11-044_T1_S1_2025-10-23_140351_2f8c2cdfcaa44c8e9b3de468b54016ab_224_1523800.wav
+  严重度: high
+  原因: empty: cond_b=False, cond_c=True, cond_d=False
+  时长: 6.0s, RMS: 0.00178, Peak: 0.06955
+
+[empty] train_input/HD-TH-1023-NG11-045_T1_S1_2025-10-23_140417_550648bb946b49b5a519562bb212c1a4_224_1523799.wav
+  严重度: high
+  原因: empty: cond_b=False, cond_c=True, cond_d=False
+  时长: 6.21s, RMS: 0.00157, Peak: 0.07727
+
+[empty] train_input/HD-TH-1023-NG11-046_T1_S1_2025-10-23_140441_c6fcb4937797409f8e6eb46b6de3345c_224_1523797.wav
+  严重度: high
+  原因: empty: cond_b=False, cond_c=True, cond_d=False
+  时长: 7.77s, RMS: 0.00129, Peak: 0.0448
+
+[empty] train_input/HD-TH-1023-NG11-047_T1_S1_2025-10-23_140503_4cacb3345d1b4da098a75dc7de1c95e5_224_1523795.wav
+  严重度: high
+  原因: empty: cond_b=False, cond_c=True, cond_d=False
+  时长: 7.29s, RMS: 0.00137, Peak: 0.04837
+
+[empty] train_input/HD-TH-1023-NG3-012_T1_S1_2025-10-23_131306_44f8a3414fc2411db84afb7330dd0a39_224_1523847.wav
+  严重度: high
+  原因: empty: cond_b=False, cond_c=True, cond_d=False
+  时长: 7.33s, RMS: 0.00112, Peak: 0.03738
+
+[empty] train_input/HD-TH-1023-NG3-013_T1_S1_2025-10-23_131344_397e09b976d54aa293cbd099e95e9c69_224_1523846.wav
+  严重度: high
+  原因: empty: cond_b=False, cond_c=True, cond_d=False
+  时长: 6.82s, RMS: 0.00136, Peak: 0.03107
+
+[incompatible] train_input/HD-TH-1023-NG3-014_T1_S1_2025-10-23_131423_53773028b81b493d9fcd91657843b618_224_1523844.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 7.0s, RMS: 0.003, Peak: 0.08429
+
+[empty] train_input/HD-TH-1023-NG3-015_T1_S1_2025-10-23_131448_f9bf5f8f70974943b78ef2e1ecae1027_224_1523842.wav
+  严重度: high
+  原因: empty: cond_b=False, cond_c=True, cond_d=False
+  时长: 7.27s, RMS: 0.00142, Peak: 0.03723
+
+[empty] train_input/HD-TH-1023-NG4-016_T1_S1_2025-10-23_131606_90a6999a95504076b806514af770186f_224_1523841.wav
+  严重度: high
+  原因: empty: cond_b=False, cond_c=True, cond_d=False
+  时长: 6.75s, RMS: 0.00157, Peak: 0.06543
+
+[empty] train_input/HD-TH-1023-NG4-017_T1_S1_2025-10-23_131646_372e54ac2b8d4884a579767a51352647_224_1523840.wav
+  严重度: high
+  原因: empty: cond_b=False, cond_c=True, cond_d=False
+  时长: 6.8s, RMS: 0.00196, Peak: 0.06653
+
+[empty] train_input/HD-TH-1023-NG4-018_T1_S1_2025-10-23_131717_de7b125451da40da9b2f25853799919c_224_1523838.wav
+  严重度: high
+  原因: empty: cond_b=False, cond_c=True, cond_d=False
+  时长: 7.0s, RMS: 0.00188, Peak: 0.04889
+
+[empty] train_input/HD-TH-1023-NG4-019_T1_S1_2025-10-23_131749_2924a09a3a8746d49b7036b584afd92b_224_1523836.wav
+  严重度: high
+  原因: empty: cond_b=False, cond_c=True, cond_d=False
+  时长: 7.45s, RMS: 0.00195, Peak: 0.07935
+
+[incompatible] train_input/HD-TH-1023-NG5-020_T1_S1_2025-10-23_132039_362e0c4b901046dcab27f4dfdc6db240_224_1523835.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 7.76s, RMS: 0.00249, Peak: 0.15118
+
+[incompatible] train_input/HD-TH-1023-NG5-021_T1_S1_2025-10-23_132109_dbfb1843c46648ad9c4cf8d0bf153904_224_1523834.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 6.86s, RMS: 0.00315, Peak: 0.08463
+
+[incompatible] train_input/HD-TH-1023-NG5-022_T1_S1_2025-10-23_132131_a06c4bda4b76460d8f430ad209bfdc0c_224_1523832.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.95s, RMS: 0.00582, Peak: 0.16431
+
+[incompatible] train_input/HD-TH-1023-NG5-023_T1_S1_2025-10-23_132153_77047d1583a44b3fa717776afb841b38_224_1523830.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 6.5s, RMS: 0.00794, Peak: 0.23181
+
+[incompatible] train_input/HD-TH-1023-NG6-024_T1_S1_2025-10-23_132457_4303512d714d41688c8423fb4a4a552c_224_1523829.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 6.86s, RMS: 0.00216, Peak: 0.11954
+
+[empty] train_input/HD-TH-1023-NG6-025_T1_S1_2025-10-23_132522_1157dd23e8da4a4c82a56cdfe09c2317_224_1523828.wav
+  严重度: high
+  原因: empty: cond_b=False, cond_c=True, cond_d=False
+  时长: 6.83s, RMS: 0.00143, Peak: 0.04016
+
+[empty] train_input/HD-TH-1023-NG6-026_T1_S1_2025-10-23_132544_e5b614f246954c128ade7d447c140ad9_224_1523825.wav
+  严重度: high
+  原因: empty: cond_b=False, cond_c=True, cond_d=False
+  时长: 6.11s, RMS: 0.00158, Peak: 0.02969
+
+[incompatible] train_input/HD-TH-1023-NG6-027_T1_S1_2025-10-23_132640_8c419bb0356848faa550c188d0151118_224_1523824.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 6.39s, RMS: 0.00241, Peak: 0.08124
+
+[incompatible] train_input/HD-TH-1023-NG8-032_T2_S1_2025-10-23_133331_9ca36b4a78eb42679eb6fdcff59faf77_224_1524069.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 7.62s, RMS: 0.00339, Peak: 0.17746
+
+[incompatible] train_input/HD-TH-1023-NG8-033_T2_S1_2025-10-23_133359_2a2d3021f2644ab28b56fcc7d5fffc43_224_1524068.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 8.82s, RMS: 0.00401, Peak: 0.28189
+
+[incompatible] train_input/HD-TH-1023-NG8-034_T2_S1_2025-10-23_133431_63dd1daa0af2402f8ffb27374bb6e4df_224_1524066.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 9.0s, RMS: 0.00218, Peak: 0.09424
+
+[incompatible] train_input/HD-TH-1023-NG8-035_T2_S1_2025-10-23_133501_0510c46ae71346d89f3a7ca981eb6a2e_224_1524065.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 8.41s, RMS: 0.00227, Peak: 0.14801
+
+[empty] train_input/HD-TH-1023-NG9-036_T1_S1_2025-10-23_133742_6995b5d9c0684c2c81165317be1bf34d_224_1523812.wav
+  严重度: high
+  原因: empty: cond_b=False, cond_c=False, cond_d=True
+  时长: 8.52s, RMS: 0.0026, Peak: 0.12399
+
+[incompatible] train_input/HD-TH-1023-NG9-037_T1_S1_2025-10-23_133833_5a2731b4fe28452c8a983e8a91fc681d_224_1523811.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 7.36s, RMS: 0.00137, Peak: 0.10391
+
+[incompatible] train_input/HD-TH-1023-NG9-038_T1_S1_2025-10-23_133911_05c9847cd4164139b62e3ee09f848a64_224_1523810.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 6.47s, RMS: 0.00131, Peak: 0.1333
+
+[incompatible] train_input/HD-TH-1023-NG9-039_T1_S1_2025-10-23_133935_d04c44f83d9d47038d91881dbdeee8cc_224_1523807.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 6.77s, RMS: 0.00117, Peak: 0.12518
+
+[incompatible] train_input/HDTH-1015-OK15-040-T1_S1_2025-10-15_151750_ee14eefd9b1b4914bff68cd2c8387ce0_1244997.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 4.96s, RMS: 0.01286, Peak: 0.50888
+
+[incompatible] train_input/HDTH-1015-OK16-043-T1_S1_2025-10-15_151858_b8ae3f8c3afb44c1870c0e074a19635a_1245001-too weak.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.12s, RMS: 0.01367, Peak: 0.93399
+
+[incompatible] train_input/HDTH-1015-OK28-073-T1_S1_2025-10-15_154724_6f2b4155e0bf4fc48011956e9e98192e_1247909.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.12s, RMS: 0.02488, Peak: 1.0
+
+[incompatible] train_input/HDTH-1015-OK3-006-T1_S1_2025-10-15_135827_fd128667293f4443897e5762621a6ee7_1244949.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 4.64s, RMS: 0.01345, Peak: 0.3063
+
+[empty] train_input/HDTH-1015-OK4-008-T2_S1_2025-10-15_135935_57c6e56671a5469686a5c49c036323d2_1245034-too weak.wav
+  严重度: high
+  原因: empty: cond_b=False, cond_c=False, cond_d=True
+  时长: 8.0s, RMS: 0.02291, Peak: 0.63647
+
+[incompatible] train_input/HDTH-1015-OK5-009-T1_S1_2025-10-15_140016_b32a50f7aab84649b557ae892e97ff3f_224_1244955.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 6.24s, RMS: 0.02244, Peak: 0.99805
+
+[incompatible] train_input/HDTH-1015-OK6-015-T1_S1_2025-10-15_144934_dc55aa2dd56a4b7fbd74c227e64a50d4_1244963.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.28s, RMS: 0.01261, Peak: 0.21924
+
+[incompatible] train_input/HDTH-1015-OK8-023-T2_S1_2025-10-15_150411_c8246811725849b8b93662563d3b2b1d_1245054.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.28s, RMS: 0.01955, Peak: 1.0
+
+[incompatible] train_input/HDTH-1015-OK8-024-T1_S1_2025-10-15_150421_05d04e9548ad49c3abd0d2202f5dc6f9_1244975.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.12s, RMS: 0.01022, Peak: 0.23318
+
+[incompatible] train_input/HDTH-1015-OK9-025-T1_S1_2025-10-15_150517_c4d2ce31445941fa9010008308c3dc61_1244977.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.28s, RMS: 0.01333, Peak: 0.47748
+
+[incompatible] train_input/HDTH-1016-NG4-020_T1_S1_2025-10-16_135946_c99cf7660ec14913bba85d5ff595999c_1266291.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 6.68s, RMS: 0.00777, Peak: 0.17929
+
+[incompatible] train_input/HDTH-1016-NG5-016_T1_S1_2025-10-16_135720_b8ca0bb0288549cf992604f50223a02b_1266292.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.12s, RMS: 0.0264, Peak: 1.0
+
+[incompatible] train_input/HDTH-1016-NG5-017_T1_S1_2025-10-16_135730_7f763e0007534204ad158c9b5cf374d0_1266294.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.92s, RMS: 0.01944, Peak: 0.48456
+
+[incompatible] train_input/HDTH-1016-NG9-009_T1_S1_2025-10-16_134528_9b8e6ca458ac40f8958b8b315f29538a_1266302.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.12s, RMS: 0.00898, Peak: 0.23035
+
+[incompatible] valid_input/HDTH-1015-OK10-027-T2_S1_2025-10-15_150809_9342c2667e0e4b7eab1e8dc729685cfe_1245060.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.92s, RMS: 0.01156, Peak: 0.46722
+
+[incompatible] valid_input/HDTH-1015-OK10-028-T2_S1_2025-10-15_150822_9f0f6612cd964148879593ed8966c897_1245061.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 6.08s, RMS: 0.01582, Peak: 0.80441
+
+[incompatible] valid_input/HDTH-1015-OK11-029-T2_S1_2025-10-15_151114_94bd0c20824f4834a75f42b2d542b6b9_1245063.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.28s, RMS: 0.01372, Peak: 1.0
+
+[incompatible] valid_input/HDTH-1015-OK13-033-T2_S1_2025-10-15_151354_271fc332534043389677e96fd754c435_1245068-interference.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 10.08s, RMS: 0.09516, Peak: 1.0
+
+[incompatible] valid_input/HDTH-1015-OK13-034-T1_S1_2025-10-15_151413_75d2867ac60f4598b2657867dc5b9b5d_1244989.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 7.2s, RMS: 0.00999, Peak: 0.99167
+
+[incompatible] valid_input/HDTH-1015-OK13-036-T2_S1_2025-10-15_151501_a79d87c4357048d78ec14fa14a8ce8f2_1245072.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 7.68s, RMS: 0.00806, Peak: 0.24179
+
+[incompatible] valid_input/HDTH-1015-OK6-017-T2_S1_2025-10-15_150014_10a77fe977a04983b53fef0de5021d39_1245046-interference.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.76s, RMS: 0.08928, Peak: 1.0
+
+[incompatible] valid_input/HDTH-1015-OK7-020-T2_S1_2025-10-15_150223_3927aa467aff48739b83ff1cb411f5f5_1245050.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.76s, RMS: 0.01228, Peak: 0.38541
+
+[incompatible] valid_input/HDTH-1015-OK7-021-T2_S1_2025-10-15_150256_56070aae197c4276bd400f0966b2d271_1245052.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.12s, RMS: 0.01207, Peak: 0.43701
+
+[incompatible] valid_input/HDTH-1015-OK9-025-T2_S1_2025-10-15_150517_5053ff1abb034c6b9018267fa4f35322_1245057.wav
+  严重度: high
+  原因: no_matching_baseline: 无匹配的基准组，数据类型不匹配
+  时长: 5.36s, RMS: 0.01235, Peak: 0.7323

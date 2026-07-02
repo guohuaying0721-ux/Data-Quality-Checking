@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>音频质量检查管线 — 流程总览</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0e0f11; --bg2:#141619; --bg3:#1c1f23;
+  --border:rgba(255,255,255,0.07); --border2:rgba(255,255,255,0.12);
+  --text:#e2e4e8; --text2:#8a8f9a; --text3:#555a66;
+  --purple:#7c6ff7; --purple-dim:rgba(124,111,247,0.12);
+  --teal:#2dd4a0; --teal-dim:rgba(45,212,160,0.10);
+  --amber:#f5a623; --amber-dim:rgba(245,166,35,0.10);
+  --coral:#f06060; --coral-dim:rgba(240,96,96,0.10);
+  --blue:#4da3f7; --blue-dim:rgba(77,163,247,0.10);
+  --gray-dim:rgba(255,255,255,0.04);
+  --mono:'IBM Plex Mono',monospace; --sans:'Noto Sans SC',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.7;min-height:100vh}
+.page{max-width:1100px;margin:0 auto;padding:40px 24px 80px}
+/* Header */
+.header{border-left:3px solid var(--purple);padding-left:20px;margin-bottom:40px}
+.header .label{font-family:var(--mono);font-size:11px;letter-spacing:.15em;color:var(--purple);text-transform:uppercase;margin-bottom:8px}
+.header h1{font-size:26px;font-weight:500;letter-spacing:-.02em;line-height:1.3}
+.header .sub{margin-top:6px;font-size:14px;color:var(--text2)}
+/* Flowchart */
+.flowchart{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:32px;margin-bottom:32px;overflow-x:auto}
+.flow-svg{width:100%;min-width:820px;height:auto}
+.legend{display:flex;gap:24px;flex-wrap:wrap;margin-top:20px;padding-top:20px;border-top:1px solid var(--border)}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2)}
+.legend-box{width:16px;height:16px;border-radius:4px;border:1px solid}
+.legend-box.purple{background:var(--purple-dim);border-color:var(--purple)}
+.legend-box.teal{background:var(--teal-dim);border-color:var(--teal)}
+.legend-box.blue{background:var(--blue-dim);border-color:var(--blue)}
+.legend-box.coral{background:var(--coral-dim);border-color:var(--coral)}
+.legend-box.gray{background:var(--gray-dim);border-color:var(--text3)}
+/* Section */
+.det-section{margin-top:32px}
+.section-title{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.lead{font-size:14px;color:var(--text2);margin-bottom:18px;max-width:780px}
+/* Table */
+.table-wrap{border:1px solid var(--border);border-radius:10px;overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead tr{background:var(--bg3)}
+thead th{padding:10px 14px;text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);font-weight:400;border-bottom:1px solid var(--border)}
+tbody tr{border-bottom:1px solid var(--border);transition:background .15s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:var(--gray-dim)}
+tbody td{padding:10px 14px;vertical-align:top;color:var(--text2);line-height:1.5}
+tbody td:nth-child(2){font-family:var(--mono);font-size:12px;color:var(--text);white-space:nowrap}
+.mono{font-family:var(--mono);font-size:12px;color:var(--text2)}
+.tag{display:inline-block;font-family:var(--mono);font-size:10px;padding:2px 6px;border-radius:3px;font-weight:500;white-space:nowrap}
+.tag.hard{background:var(--purple-dim);color:var(--purple)}
+.tag.cross{background:var(--coral-dim);color:var(--coral)}
+.tag.base{background:var(--teal-dim);color:var(--teal)}
+.tag.high{background:var(--coral-dim);color:var(--coral)}
+.tag.med{background:var(--amber-dim);color:var(--amber)}
+/* Cards */
+.skill-section{margin-top:32px}
+.skill-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:12px}
+.skill-card.accent-purple{border-left:3px solid var(--purple)}
+.skill-card.accent-teal{border-left:3px solid var(--teal)}
+.skill-card.accent-amber{border-left:3px solid var(--amber)}
+.skill-card.accent-blue{border-left:3px solid var(--blue)}
+.skill-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.skill-name{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--text)}
+.skill-stage{font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:3px;background:var(--teal-dim);color:var(--teal)}
+.skill-desc{font-size:13px;color:var(--text2)}
+.skill-desc code{font-family:var(--mono);font-size:12px;background:var(--bg);padding:1px 5px;border-radius:3px;color:var(--amber)}
+.skill-flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:12px}
+.sf-step{background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:4px 10px;font-size:12px;color:var(--text2)}
+.sf-step.hot{border-color:var(--teal);color:var(--teal)}
+.sf-arrow{color:var(--text3);font-size:12px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--border);font-family:var(--mono);font-size:11px;color:var(--text3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="label">audio_qc_pipeline · 流程总览</div>
+    <h1>音频质量检查管线<br>三阶段工作流方法论</h1>
+    <div class="sub">分组基准 · 早返回判定 · CALIB 集中校准 · 跨产品复用</div>
+  </div>
+
+  <!-- Main Flowchart -->
+  <div class="flowchart">
+    <svg class="flow-svg" viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#8a8f9a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+        <marker id="arrow-coral" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#f06060" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+        <marker id="arrow-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#2dd4a0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+
+      <text x="450" y="26" text-anchor="middle" font-family="var(--mono)" font-size="12" fill="#555a66" letter-spacing="0.1em">学基准 → 存标准 → 日常检测</text>
+
+      <!-- ===== 阶段一 ===== -->
+      <line x1="40" y1="52" x2="860" y2="52" stroke="rgba(255,255,255,0.07)" stroke-width="1" stroke-dasharray="4 4"/>
+      <text x="50" y="49" font-family="var(--sans)" font-size="12" fill="#7c6ff7" font-weight="500">▍ 阶段一 · 硬规则快筛（无需基准 · 联调当天）</text>
+
+      <rect x="200" y="66" width="500" height="46" rx="8" fill="rgba(124,111,247,0.08)" stroke="#7c6ff7" stroke-width="1"/>
+      <text x="450" y="87" text-anchor="middle" font-family="var(--sans)" font-size="14" fill="#e2e4e8" font-weight="500">phase1 · 硬规则快筛</text>
+      <text x="450" y="104" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="#8a8f9a">corrupt / empty / clipped · 跨产品通用，立即可跑</text>
+
+      <line x1="450" y1="112" x2="450" y2="132" stroke="#8a8f9a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+      <rect x="330" y="132" width="240" height="40" rx="8" fill="rgba(255,255,255,0.04)" stroke="#555a66" stroke-width="1"/>
+      <text x="450" y="157" text-anchor="middle" font-family="var(--sans)" font-size="13" fill="#e2e4e8" font-weight="500">发现明显坏文件？</text>
+      <line x1="570" y1="152" x2="655" y2="152" stroke="#f06060" stroke-width="1.5" marker-end="url(#arrow-coral)"/>
+      <rect x="655" y="132" width="170" height="40" rx="8" fill="rgba(240,96,96,0.08)" stroke="#f06060" stroke-width="1"/>
+      <text x="740" y="156" text-anchor="middle" font-family="var(--sans)" font-size="12" fill="#f06060" font-weight="500">现场处理 · 重采</text>
+
+      <line x1="450" y1="172" x2="450" y2="196" stroke="#8a8f9a" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <text x="460" y="190" font-family="var(--sans)" font-size="11" fill="#555a66">否，进入基准期</text>
+
+      <!-- ===== 阶段二 ===== -->
+      <line x1="40" y1="204" x2="860" y2="204" stroke="rgba(255,255,255,0.07)" stroke-width="1" stroke-dasharray="4 4"/>
+      <text x="50" y="201" font-family="var(--sans)" font-size="12" fill="#2dd4a0" font-weight="500">▍ 阶段二 · 学基准（人工确认的干净录音 · 一次性）</text>
+
+      <rect x="200" y="218" width="500" height="42" rx="8" fill="rgba(45,212,160,0.08)" stroke="#2dd4a0" stroke-width="1"/>
+      <text x="450" y="244" text-anchor="middle" font-family="var(--sans)" font-size="14" fill="#e2e4e8" font-weight="500">① 人工确认基准数据（逐段确保设备正常录音）</text>
+      <line x1="450" y1="260" x2="450" y2="278" stroke="#8a8f9a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+      <rect x="200" y="278" width="500" height="46" rx="8" fill="rgba(45,212,160,0.08)" stroke="#2dd4a0" stroke-width="1"/>
+      <text x="450" y="298" text-anchor="middle" font-family="var(--sans)" font-size="14" fill="#e2e4e8" font-weight="500">② phase2 · 分组学习</text>
+      <text x="450" y="315" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="#8a8f9a">按 机台 × 阶段 × 通道 最小颗粒分组 → 每组原始统计量</text>
+      <line x1="450" y1="324" x2="450" y2="342" stroke="#8a8f9a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+      <rect x="200" y="342" width="500" height="42" rx="8" fill="rgba(45,212,160,0.08)" stroke="#2dd4a0" stroke-width="1"/>
+      <text x="450" y="368" text-anchor="middle" font-family="var(--sans)" font-size="14" fill="#e2e4e8" font-weight="500">③ 健康校验（样本 &lt; 5 / 无边车 JSON → 告警）</text>
+      <line x1="450" y1="384" x2="450" y2="402" stroke="#8a8f9a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+      <rect x="200" y="402" width="500" height="46" rx="8" fill="rgba(45,212,160,0.12)" stroke="#2dd4a0" stroke-width="1.5"/>
+      <text x="450" y="422" text-anchor="middle" font-family="var(--sans)" font-size="14" fill="#e2e4e8" font-weight="500">④ 产出 thresholds.json（项目永久标准）</text>
+      <text x="450" y="439" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="#8a8f9a">每组原始统计量 + 固化的 CALIB 系数</text>
+      <line x1="450" y1="448" x2="450" y2="468" stroke="#8a8f9a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+      <!-- ===== 阶段三 ===== -->
+      <line x1="40" y1="476" x2="860" y2="476" stroke="rgba(255,255,255,0.07)" stroke-width="1" stroke-dasharray="4 4"/>
+      <text x="50" y="473" font-family="var(--sans)" font-size="12" fill="#4da3f7" font-weight="500">▍ 阶段三 · 日常检测（长期复用 thresholds.json）</text>
+
+      <rect x="200" y="490" width="500" height="46" rx="8" fill="rgba(77,163,247,0.08)" stroke="#4da3f7" stroke-width="1"/>
+      <text x="450" y="510" text-anchor="middle" font-family="var(--sans)" font-size="14" fill="#e2e4e8" font-weight="500">phase3 · 合并检测</text>
+      <text x="450" y="527" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="#8a8f9a">硬规则 + 跨产品门 + per-group 阈值（套 CALIB）</text>
+      <line x1="450" y1="536" x2="450" y2="556" stroke="#8a8f9a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+      <rect x="330" y="556" width="240" height="40" rx="8" fill="rgba(255,255,255,0.04)" stroke="#555a66" stroke-width="1"/>
+      <text x="450" y="581" text-anchor="middle" font-family="var(--sans)" font-size="13" fill="#e2e4e8" font-weight="500">命中任一规则？</text>
+      <line x1="570" y1="576" x2="655" y2="576" stroke="#f06060" stroke-width="1.5" marker-end="url(#arrow-coral)"/>
+      <rect x="655" y="556" width="170" height="40" rx="8" fill="rgba(240,96,96,0.08)" stroke="#f06060" stroke-width="1"/>
+      <text x="740" y="580" text-anchor="middle" font-family="var(--sans)" font-size="12" fill="#f06060" font-weight="500">标记异常 + 分类</text>
+
+      <line x1="450" y1="596" x2="450" y2="620" stroke="#2dd4a0" stroke-width="1.5" marker-end="url(#arrow-teal)"/>
+      <text x="460" y="614" font-family="var(--sans)" font-size="11" fill="#555a66">否</text>
+      <rect x="330" y="620" width="240" height="42" rx="8" fill="rgba(45,212,160,0.08)" stroke="#2dd4a0" stroke-width="1"/>
+      <text x="450" y="646" text-anchor="middle" font-family="var(--sans)" font-size="13" fill="#2dd4a0" font-weight="500">keep ✓ 进入训练池</text>
+    </svg>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-box purple"></div> 阶段一 · 硬规则快筛</div>
+      <div class="legend-item"><div class="legend-box teal"></div> 阶段二 · 学基准</div>
+      <div class="legend-item"><div class="legend-box blue"></div> 阶段三 · 日常检测</div>
+      <div class="legend-item"><div class="legend-box gray"></div> 判断节点</div>
+      <div class="legend-item"><div class="legend-box coral"></div> 异常 / 处理分支</div>
+    </div>
+  </div>
+
+  <!-- 分组基准机制 -->
+  <div class="det-section">
+    <div class="section-title">分组基准机制 · 最小颗粒</div>
+    <p class="lead">不同工位/阶段的"正常"本就不同，统一阈值两头不讨好。所以按 wav 的 <span class="mono">.json</span> 边车里的 <span class="mono">机台 × 阶段 × 通道</span> 最小颗粒分组，<b>每组用自己的基准比对</b>，学与检完全对称。</p>
+    <div class="skill-card accent-blue">
+      <div class="skill-header"><div class="skill-name">分组键 = detectPointName_stage{N}_ch{N}</div><div class="skill-stage">学检对称</div></div>
+      <div class="skill-desc">phase2 按此键分组学统计量；phase3 每个待检文件读边车拼出同一键，只取<b>本组</b>基准跑阈值。<br><b>严格同组、无兜底</b>：待检文件的组若不在基准里，即使同产品也判 <code>incompatible</code> —— 上新机台/新阶段前须先喂干净样本扩基准。</div>
+      <div class="skill-flow">
+        <span class="sf-step">读 .json 边车</span><span class="sf-arrow">→</span>
+        <span class="sf-step">拼分组键</span><span class="sf-arrow">→</span>
+        <span class="sf-step hot">匹配基准组</span><span class="sf-arrow">→</span>
+        <span class="sf-step">该组阈值检测</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 判定流水线 -->
+  <div class="det-section">
+    <div class="section-title">判定流水线 · 早返回，顺序即优先级</div>
+    <p class="lead">phase3 自上而下查，<b>第一条命中的规则即最终标签</b>，每个文件只拿一个标签。分四梯队，梯队之间的顺序是硬约束：<b>先认出确凿的物理硬伤，再问兼不兼容，最后才拿基准量细节</b>。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>梯队</th><th>判定</th><th>含义</th><th>命中→</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag hard">A</span></td><td>能否处理</td><td>文件读不出 / 特征算不了</td><td><span class="tag high">corrupt</span></td></tr>
+          <tr><td><span class="tag hard">B</span></td><td>物理硬伤 · 硬规则（全量）</td><td>空采、削波 —— 与产品无关，抢在兼容门之前，避免被"不兼容"掩盖</td><td><span class="tag high">empty / clipped</span></td></tr>
+          <tr><td><span class="tag cross">C</span></td><td>有没有尺子</td><td>无匹配基准组（跨产品 / 无元数据）→ 后面规则没尺子可比</td><td><span class="tag high">incompatible</span></td></tr>
+          <tr><td><span class="tag base">D</span></td><td>拿尺子量细节 · per-group × CALIB</td><td>八条基准规则依次查，全过则保留</td><td><span class="tag med">对应异常 / keep</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 检测类型对照 -->
+  <div class="det-section">
+    <div class="section-title">检测类型对照表</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>类型</th><th>中文</th><th>层级</th><th>检测依据</th><th>生效阈值</th><th>严重度</th></tr></thead>
+        <tbody>
+          <tr><td>①</td><td>corrupt</td><td>文件损坏</td><td><span class="tag hard">硬规则</span></td><td>读取失败 / 空文件</td><td class="mono">—</td><td><span class="tag high">high</span></td></tr>
+          <tr><td>②</td><td>empty</td><td>空采</td><td><span class="tag hard">硬规则</span></td><td>信号结构特征（cv、peak/mean）</td><td class="mono">结构判据</td><td><span class="tag high">high</span></td></tr>
+          <tr><td>③</td><td>clipped</td><td>削波</td><td><span class="tag hard">硬规则</span></td><td>峰值贴顶 + 削波率 + 能量</td><td class="mono">peak≥0.99</td><td><span class="tag high">high</span></td></tr>
+          <tr><td>④</td><td>incompatible</td><td>无匹配基准</td><td><span class="tag cross">跨产品</span></td><td>边车无匹配分组键</td><td class="mono">—</td><td><span class="tag high">high</span></td></tr>
+          <tr><td>⑤</td><td>too_weak</td><td>信号过弱</td><td><span class="tag base">基准</span></td><td>整段 RMS</td><td class="mono">&lt; rms_P5 × 0.5</td><td><span class="tag med">medium</span></td></tr>
+          <tr><td>⑥</td><td>too_loud</td><td>信号过响</td><td><span class="tag base">基准</span></td><td>整段 RMS</td><td class="mono">&gt; rms_P95 × 1.5</td><td><span class="tag high">high</span></td></tr>
+          <tr><td>⑦</td><td>late_start</td><td>起录过晚</td><td><span class="tag base">基准</span></td><td>前段/后段能量比</td><td class="mono">&lt; median × 0.35</td><td><span class="tag med">medium</span></td></tr>
+          <tr><td>⑧</td><td>pre_silence</td><td>前静音异常</td><td><span class="tag base">基准</span></td><td>首段静音时长</td><td class="mono">&gt; max(P95×2, 0.5s)</td><td><span class="tag med">medium</span></td></tr>
+          <tr><td>⑨</td><td>post_silence</td><td>后静音异常</td><td><span class="tag base">基准</span></td><td>尾段静音时长</td><td class="mono">&gt; max(P95×2, 0.5s)</td><td><span class="tag med">medium</span></td></tr>
+          <tr><td>⑩</td><td>too_short</td><td>时长过短</td><td><span class="tag base">基准</span></td><td>录音时长</td><td class="mono">&lt; min × 0.5</td><td><span class="tag med">medium</span></td></tr>
+          <tr><td>⑪</td><td>too_long</td><td>时长过长</td><td><span class="tag base">基准</span></td><td>录音时长</td><td class="mono">&gt; max × 1.5</td><td><span class="tag med">medium</span></td></tr>
+          <tr><td>⑫</td><td>interference</td><td>电磁干扰</td><td><span class="tag base">基准</span></td><td>过零率 ZCR</td><td class="mono">&gt; 0.375</td><td><span class="tag med">medium</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CALIB 校准机制 -->
+  <div class="det-section">
+    <div class="section-title">CALIB 校准机制</div>
+    <p class="lead">基准只产"数据长什么样"的原始统计量；"多严格"由一组系数 <span class="mono">CALIB</span> 决定。<b>生效阈值 = 基准统计量 × CALIB 系数</b>，所有灵敏度收口一处，调松紧只动这里。</p>
+    <div class="skill-card accent-amber">
+      <div class="skill-header"><div class="skill-name">CALIB 的"两段式"行为 · 必须知道</div><div class="skill-stage" style="background:var(--amber-dim);color:var(--amber)">注意</div></div>
+      <div class="skill-desc">CALIB 有两个身份：① 代码里的定义（真理来源）；② phase2 学基准时<b>整份固化进 thresholds.json 的快照</b>。phase3 检测时<b>优先用 thresholds.json 里的快照</b>。<br>所以 <code>只改代码里的 CALIB 不会改变检测结果</code> —— 必须重跑 phase2 重新固化。这是为了<b>可复现</b>：拿单个 thresholds.json 就能精确重现那次检测。</div>
+      <div class="skill-flow">
+        <span class="sf-step">改 CALIB 系数</span><span class="sf-arrow">→</span>
+        <span class="sf-step hot">重跑 phase2（重新固化）</span><span class="sf-arrow">→</span>
+        <span class="sf-step">重跑 phase3 生效</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 设计原则 -->
+  <div class="skill-section">
+    <div class="section-title">设计原则</div>
+    <div class="skill-card accent-purple">
+      <div class="skill-header"><div class="skill-name">共享内核 · 单一定义</div></div>
+      <div class="skill-desc">IO / 特征提取 / empty / clipped 统一在 <code>common.py</code>，三个 phase 共用。避免规则在各文件复制并发散 —— 同一文件在快筛与复检中结果必然一致。</div>
+    </div>
+    <div class="skill-card accent-teal">
+      <div class="skill-header"><div class="skill-name">分级对称 · too_weak ↔ too_loud</div></div>
+      <div class="skill-desc">能量既有"过弱"也有"过响"，规则成对存在，避免不对称漏检。同产品同组但显著偏离本组水平 → 归类为对应异常，而非误判成"不兼容"。</div>
+    </div>
+    <div class="skill-card accent-blue">
+      <div class="skill-header"><div class="skill-name">绝对地板 · 防近零基准塌缩</div></div>
+      <div class="skill-desc">乘法阈值碰到近零基准（如首尾几乎无静音）会塌缩到 0，任何抖动都误报。对静音类阈值加绝对地板（如 0.5s），低于此一律不算。</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>audio_qc_pipeline · 流程总览</span>
+    <span>分组基准 · 早返回判定 · 跨产品复用</span>
+  </div>
+
+</div>
+</body>
+</html>

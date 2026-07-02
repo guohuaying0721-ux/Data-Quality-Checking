@@ -1,0 +1,18 @@
+{
+  "datasetCode": "DS-202606-0063",
+  "datasetName": "验证",
+  "version": "V1.0",
+  "fileID": "7a11d8ecf80d42b69e0a05a9996c3b70",
+  "originalWav": "channel_3_20260623163721.wav",
+  "dateDir": "2026-06-23",
+  "channelID": "b43faf2788484cdf91d07fe69b1ac894",
+  "productUniqueCode": "4US8Q6N222",
+  "detectPointName": "管柱",
+  "channel": "3",
+  "stage": "1",
+  "channelCount": 1,
+  "productInfo": {
+    "productNumber": "MQB",
+    "productName": "MQB"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "version": "2.0",
+    "note": "存原始统计量；生效阈值 = 统计量 × common.CALIB 系数，检测时计算",
+    "n_baselines": 4,
+    "n_total_samples": 80,
+    "min_baseline_samples": 5,
+    "warnings": []
+  },
+  "hard_rules": {
+    "empty": {
+      "frame_mean": 0.01,
+      "frame_cv": 0.6,
+      "frame_max": 0.05,
+      "rms": 0.01,
+      "cond_a_energy_floor": 0.05
+    },
+    "clipped": {
+      "peak": 0.99,
+      "clipping_ratio": 0.001,
+      "rms": 0.15,
+      "frame_mean": 0.15
+    }
+  },
+  "calib": {
+    "too_weak": 0.5,
+    "too_loud": 1.5,
+    "late_start": 0.35,
+    "pre_silence": 2.0,
+    "post_silence": 2.0,
+    "silence_floor_sec": 0.5,
+    "too_short": 0.5,
+    "too_long": 1.5,
+    "interference": 0.9,
+    "clipped_ratio": 0.08
+  },
+  "baselines": {
+    "管柱_stage1_ch3": {
+      "n_samples": 20,
+      "duration_min": 6.21,
+      "duration_max": 6.93,
+      "rms_p_low": 0.10770617423756124,
+      "rms_p_high": 0.17072234706507522,
+      "rms_mean": 0.13659604733349412,
+      "rms_std": 0.021669852008047306,
+      "pre_silence_p95": 0.0,
+      "post_silence_p95": 1.1337868480725784e-06,
+      "late_start_median": 1.0619772198279749,
+      "interference_p95": 0.3369904139418291
+    },
+    "管柱_stage2_ch3": {
+      "n_samples": 20,
+      "duration_min": 6.37,
+      "duration_max": 7.06,
+      "rms_p_low": 0.09750711580106403,
+      "rms_p_high": 0.13572921938463914,
+      "rms_mean": 0.11633605436560712,
+      "rms_std": 0.01515157830826702,
+      "pre_silence_p95": 0.0,
+      "post_silence_p95": 2.2675736961451248e-05,
+      "late_start_median": 0.813650783307775,
+      "interference_p95": 0.35229020482822415
+    },
+    "电机_stage1_ch4": {
+      "n_samples": 20,
+      "duration_min": 6.21,
+      "duration_max": 6.93,
+      "rms_p_low": 0.16935976955063348,
+      "rms_p_high": 0.29829697522534865,
+      "rms_mean": 0.22972082040006442,
+      "rms_std": 0.040560338207189475,
+      "pre_silence_p95": 0.0,
+      "post_silence_p95": 2.3809523809523827e-05,
+      "late_start_median": 1.0855803565140563,
+      "interference_p95": 0.8452962415417126
+    },
+    "电机_stage2_ch4": {
+      "n_samples": 20,
+      "duration_min": 6.37,
+      "duration_max": 7.06,
+      "rms_p_low": 0.26353295307833324,
+      "rms_p_high": 0.4416587666596759,
+      "rms_mean": 0.33700371738532336,
+      "rms_std": 0.059737172367729165,
+      "pre_silence_p95": 0.0,
+      "post_silence_p95": 2.2675736961451248e-05,
+      "late_start_median": 0.9706216135348318,
+      "interference_p95": 0.8508727920300401
+    }
+  }
+}

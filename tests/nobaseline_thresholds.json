@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "n_baselines": 0,
+    "note": "无基准夹具测试专用：只验证硬规则(empty/clipped/corrupt)+兼容性(无匹配基准→incompatible)，不测 per-group 阈值"
+  },
+  "baselines": {},
+  "calib": {
+    "too_weak": 0.5,
+    "too_loud": 1.5,
+    "late_start": 0.35,
+    "pre_silence": 2.0,
+    "post_silence": 2.0,
+    "silence_floor_sec": 0.5,
+    "too_short": 0.5,
+    "too_long": 1.5,
+    "interference": 0.375
+  }
+}

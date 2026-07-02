@@ -1,0 +1,9 @@
+{
+  "total": 3,
+  "pred_counts": {
+    "empty": 3
+  },
+  "severity_counts": {
+    "high": 3
+  }
+}

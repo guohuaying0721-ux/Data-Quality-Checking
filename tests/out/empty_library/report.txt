@@ -1,0 +1,38 @@
+================================================================================
+音频质量检测 - 项目全局标准报告
+================================================================================
+
+总文件数: 3
+异常文件数: 3
+
+【检测标准】（生效阈值 = 基准统计量 × 系数）
+硬规则（全量）: empty（信号结构特征） / clipped（峰值贴顶+削波率+能量）
+跨产品: 无匹配基准组 → incompatible
+基准阈值（per-group）:
+  too_weak:     rms < rms_P5 × 0.5
+  too_loud:     rms > rms_P95 × 1.5
+  late_start:   front/back < late_median × 0.35
+  pre_silence:  > max(pre_P95 × 2.0, 0.5s)
+  post_silence: > max(post_P95 × 2.0, 0.5s)
+  too_short:    dur < min × 0.5    too_long: dur > max × 1.5
+  interference: zcr > 0.375（经验值）
+
+【异常汇总】
+  empty: 3
+
+【详细结果】
+
+[empty] N_11111_C3_S1_T1_20260310205501_7ab0659b709c4c26a7129bb68eb496ff_2823766-empty.wav
+  严重度: high
+  原因: empty: cond_b=True, cond_c=False, cond_d=False
+  时长: 17.14s, RMS: 0.04966, Peak: 1.0
+
+[empty] N_222_C3_S1_T1_20260310210414_bfc8f6318d624cb7b52f4294e29ce06f_2823767-empty.wav
+  严重度: high
+  原因: empty: cond_b=False, cond_c=True, cond_d=False
+  时长: 4.6s, RMS: 0.00899, Peak: 0.04538
+
+[empty] empty.wav
+  严重度: high
+  原因: empty: cond_b=False, cond_c=True, cond_d=False
+  时长: 7.04s, RMS: 0.00498, Peak: 0.07602

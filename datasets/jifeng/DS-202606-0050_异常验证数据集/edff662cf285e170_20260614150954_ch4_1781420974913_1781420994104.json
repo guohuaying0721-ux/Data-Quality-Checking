@@ -1,0 +1,14 @@
+{
+  "datasetCode": "DS-202606-0050",
+  "datasetName": "异常验证数据集",
+  "version": "V1.0",
+  "fileID": "b5b4c9c6fa2c431096ace90f11acac37",
+  "originalWav": "edff662cf285e170_20260614150954_ch4_1781420974913_1781420994104.wav",
+  "dateDir": "2026-06-14",
+  "channelID": "6a4f2c91d98541f1acde9b65d26fd8bc",
+  "productUniqueCode": "GZ0000071-039021504R-67403B300130,HM/TJX7-3-L/260601/1800/4108X04/60",
+  "detectPointName": "EOL-60%-1号机-左",
+  "channel": "4",
+  "stage": "1",
+  "channelCount": 1
+}

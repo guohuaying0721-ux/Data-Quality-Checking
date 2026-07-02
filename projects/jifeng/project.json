@@ -1,0 +1,17 @@
+{
+  "name": "jifeng",
+  "display_name": "继峰",
+  "note": "继峰座椅 EOL 工位。2026-06-11 据继峰验证集标定 CALIB（修正四类误报）。",
+  "baseline_sets": [
+    "datasets/jifeng/DS-202606-0006",
+    "datasets/jifeng/DS-202606-0007"
+  ],
+  "valid_sets": {
+    "ds0008_双人椅": "datasets/jifeng/DS-202606-0008_双人椅",
+    "ds0009_单人椅": "datasets/jifeng/DS-202606-0009_单人椅",
+    "ds0021_验证集1": "datasets/jifeng/DS-202606-0021_继峰验证集1",
+    "ds0022_验证集2": "datasets/jifeng/DS-202606-0022_继峰验证集2",
+    "ds0050_异常验证集":"datasets/jifeng/DS-202606-0050_异常验证数据集"
+  },
+  "calib_override": {}
+}

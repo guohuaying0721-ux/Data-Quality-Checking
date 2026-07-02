@@ -1,0 +1,13 @@
+{
+  "name": "nsk-eps9",
+  "display_name": "NSK-EPS9",
+  "note": "NSK-EPS9",
+  "baseline_sets": [
+    "datasets/nsk-eps9/DS-202606-0066_基准"
+  ],
+  "valid_sets": {
+   
+    "ds0062_验证集":"datasets/nsk-eps9/DS-202606-0067_验证"
+  },
+  "calib_override": {"interference": 0.9, "clipped_ratio": 0.08}
+}
